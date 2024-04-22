@@ -24,7 +24,7 @@ const Mint = (props: Props) => {
     try {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: goerli.chainId }],
+        params: [{ chainId: 11155111.chainId }],
       });
     } catch (error) {
       toast.error("Please switch to goerli Network");
