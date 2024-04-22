@@ -27,7 +27,7 @@ const Mint = (props: Props) => {
         params: [{ chainId: sepolia.chainId }],
       });
     } catch (error) {
-      toast.error("Please switch to goerli Network");
+      toast.error("Please switch to sepolia Network");
     }
   };
 
@@ -42,7 +42,7 @@ const Mint = (props: Props) => {
 
       if (chainId !== parseInt(sepolia.chainId)) {
         switchNetwork();
-        throw new Error("Please switch to goerli Network and try again");
+        throw new Error("Please switch to sepolia Network and try again");
       }
 
       const signer = await provider.getSigner();
@@ -52,7 +52,7 @@ const Mint = (props: Props) => {
         signer
       );
       const transaction = await contract.mint(1, {
-        value: ethers.parseEther("0.04"),
+        value: ethers.parseEther("0.01"),
       });
       await transaction.wait();
       setTransactionHash(transaction.hash);
