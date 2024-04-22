@@ -7,7 +7,7 @@ import { useState } from "react";
 import abi from "@/artifacts/contracts/ByteBunch.sol/ByteBunch.json";
 import NFTNumber from "./NFTNumber";
 import Modal from "./Modal";
-import { goerli } from "@/utils/networks";
+import { sepolia } from "@/utils/networks";
 
 type Props = {};
 
@@ -24,7 +24,7 @@ const Mint = (props: Props) => {
     try {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: 11155111.chainId }],
+        params: [{ chainId: sepolia.chainId }],
       });
     } catch (error) {
       toast.error("Please switch to goerli Network");
@@ -40,7 +40,7 @@ const Mint = (props: Props) => {
       const network = await provider.getNetwork();
       const chainId = Number(ethers.formatUnits(network.chainId)) * 10e17;
 
-      if (chainId !== parseInt(goerli.chainId)) {
+      if (chainId !== parseInt(sepolia.chainId)) {
         switchNetwork();
         throw new Error("Please switch to goerli Network and try again");
       }
